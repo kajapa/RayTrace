@@ -254,19 +254,21 @@ public class cVector {
 
     public double Cosinus(int angle) {
         double num = 0;
-        switch (angle) {
+        int sign = minusPlus(angle);
+        int s= Math.abs(angle);
+        switch (s) {
             case 0: {
                 num = 1;
             }
             case 30: {
-                num = Math.sqrt(3) / 2;
+                num = (Math.sqrt(3) / 2)*sign;
 
             }
             case 45: {
-                num = Math.sqrt(2) / 2;
+                num = (Math.sqrt(2) / 2)*sign;
             }
             case 60: {
-                num = 0.5;
+                num = 0.5*sign;
 
             }
             case 90: {
@@ -280,23 +282,24 @@ public class cVector {
 
     public double Sinus(int angle) {
         double num = 0;
-        switch (angle) {
+        int sign = minusPlus(angle);
+        int s= Math.abs(angle);
+        switch (s) {
             case 0: {
                 num = 0;
             }
             case 30: {
-                num = 0.5;
+                num = 0.5*sign;
 
             }
             case 45: {
-                num = Math.sqrt(2) / 2;
+                num = (Math.sqrt(2) / 2)*sign;
             }
             case 60: {
-                num = Math.sqrt(3) / 2;
-
+                num = (Math.sqrt(3) / 2)*sign;
             }
             case 90: {
-                num = 1;
+                num = 1*sign;
             }
 
         }
@@ -304,6 +307,19 @@ public class cVector {
 
     }
 
+    public int minusPlus(int a){
+    if(a<0)
+    return -1;
+    
+    else
+        return 1;
+    
+    }
+    
+    
+    
+    
+    
     public cVector scaleVector(cVector v) {
         double[][] x = {{v.x, 0, 0, 0}, {0, v.y, 0, 0}, {0, 0, v.z, 0}, {0, 0, 0, 1}};
         double[] result = new double[4];

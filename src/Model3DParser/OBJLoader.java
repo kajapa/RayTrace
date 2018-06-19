@@ -44,9 +44,9 @@ public class OBJLoader {
 
             }
             else if (line.startsWith("f ")) {
-                String test="f 1//8 297//8 11//8";
+        
                 
-                if(line.endsWith(line.split(" ")[3].split("/")[0])){
+                
                 int v1 = Integer.valueOf(line.split(" ")[1].split("/")[0]);
                 System.out.printf("\n"+"v1 "+v1);
                 int v2 = Integer.valueOf(line.split(" ")[2].split("/")[0]);
@@ -56,20 +56,9 @@ public class OBJLoader {
                 System.out.printf("\n"+"v3 "+v3);
                  int n = Integer.valueOf(line.split(" ")[1].split("/")[2]);
 
-                m.faces.add(new Face(v1, v2, v3, 0, n));
-                }
-                else{
-                     int v1 = Integer.valueOf(line.split(" ")[1].split("/")[0]);
-                System.out.printf("\n"+"v1 "+v1);
-                int v2 = Integer.valueOf(line.split(" ")[2].split("/")[0]);
-                System.out.printf("\n"+"v2 "+v2);
-                int v3 = Integer.valueOf(line.split(" ")[3].split("/")[0]);
-
-                int v4 = Integer.valueOf(line.split(" ")[4].split("/")[0]);
-                System.out.printf("\n"+"v4 "+v4);
-                int n = Integer.valueOf(line.split(" ")[1].split("/")[2]);
-
-                m.faces.add(new Face(v1, v2, v3, v4, n));}
+                m.faces.add(new Face(v1, v2, v3, n));
+                
+               
 
             }
         }

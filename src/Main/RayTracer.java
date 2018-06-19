@@ -34,8 +34,8 @@ public class RayTracer extends JFrame {
     Color blue = new Color(0, 0, 255);
     Color green = new Color(0, 255, 0);
 
-    int width = 1920;
-    int height = 1080;
+    int width = 800;
+    int height = 600;
     private ObjectLists objects = new ObjectLists();
     private ObjectLists objects2 = new ObjectLists();
 
@@ -48,7 +48,7 @@ public class RayTracer extends JFrame {
         //OBJ Object
         Model3D m = null;
         try {
-            m = OBJLoader.loadModel(new File("sphere.obj"));
+            m = OBJLoader.loadModel(new File("pyramid.obj"));
         }
         catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -63,19 +63,19 @@ public class RayTracer extends JFrame {
         float b = 0;
 
         int scale = 32;
-        cVector position = new cVector(200, 400, 0);
+        cVector position = new cVector(100, 0, 0);
         /*objects.addToList(new Triangle(new cVector(300,300,0),new cVector(300,500,0), new cVector(500,300,0), red));
         objects.addToList(new Triangle(new cVector(300,500,0),new cVector(500,500,0), new cVector(500,300,0), blue));
         objects.addToList(new Triangle(new cVector(500,300,10).rotateAxis(30, 'x'),new cVector(500,500,10).rotateAxis(30, 'x'), new cVector(700,300,10).rotateAxis(30, 'x'), red));
         objects.addToList(new Triangle(new cVector(500,500,10).rotateAxis(30, 'x'),new cVector(700,500,10).rotateAxis(30, 'x'), new cVector(700,300,10).rotateAxis(30, 'x'), blue));*/
 
         for (Face face : m.faces) {
-            if (face.v4 == 0) {
+           
 
-                cVector v1 = new cVector(m.verticies.get(face.v1 - 1)).multiuplayby(16).add(position).rotateAxis(30, 'y').scaleVector(new cVector(3f, 1f, 2f));
+                cVector v1 = new cVector(m.verticies.get(face.v1 - 1)).multiuplayby(16).add(position).rotateAxis(90, 'x').rotateAxis(60, 'x');
                 //System.out.printf("Przed skalowaniem: "+v1.toString()+" Po skalowaniu: "+ v1.scaleVector(new cVector(1,0.5f,1)).toString());
-                cVector v2 = new cVector(m.verticies.get(face.v2 - 1)).multiuplayby(16).add(position).rotateAxis(30, 'y').scaleVector(new cVector(3f, 1f, 2f));
-                cVector v3 = new cVector(m.verticies.get(face.v3 - 1)).multiuplayby(16).add(position).rotateAxis(30, 'y').scaleVector(new cVector(3f, 1f, 2f));
+                cVector v2 = new cVector(m.verticies.get(face.v2 - 1)).multiuplayby(16).add(position).rotateAxis(90, 'x').rotateAxis(60, 'x');
+                cVector v3 = new cVector(m.verticies.get(face.v3 - 1)).multiuplayby(16).add(position).rotateAxis(90, 'x').rotateAxis(60, 'x');
 
               
                 cVector n = new cVector(m.normals.get(face.n - 1));
@@ -83,17 +83,8 @@ public class RayTracer extends JFrame {
                 //System.out.println(v1.toString() + v2.toString() + v3.toString() + v4.toString() + "normal: " + n.toString());
                 objects.addToList(new Triangle(v1, v2, v3, randomColor()));
                
-            }
-            else{
-                 cVector v1 = new cVector(m.verticies.get(face.v1 - 1)).multiuplayby(16).add(position).rotateAxis(30, 'y').scaleVector(new cVector(3f, 1f, 2f));
-                //System.out.printf("Przed skalowaniem: "+v1.toString()+" Po skalowaniu: "+ v1.scaleVector(new cVector(1,0.5f,1)).toString());
-                cVector v2 = new cVector(m.verticies.get(face.v2 - 1)).multiuplayby(16).add(position).rotateAxis(30, 'y').scaleVector(new cVector(3f, 1f, 2f));
-                cVector v3 = new cVector(m.verticies.get(face.v3 - 1)).multiuplayby(16).add(position).rotateAxis(30, 'y').scaleVector(new cVector(3f, 1f, 2f));
-              cVector v4 = new cVector(m.verticies.get(face.v4 - 1)).multiuplayby(16).add(position).rotateAxis(30, 'y').scaleVector(new cVector(3f, 1f, 2f));
-              
-              objects.addToList(new Triangle(v1, v2, v3, randomColor()));
-               objects.addToList(new Triangle(v1, v3, v4, randomColor()));
-            }
+           
+           
         }
 
         /* objects.addToList(new Sphere(new cVector(480, 480, 50f), 200f, blue));
