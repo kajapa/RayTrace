@@ -210,48 +210,66 @@ public class cVector {
         return new cVector(p.x * n, p.y * n, p.z * n);
     }
 
-    public cVector rotateAxis(int angle, char axis) {
-        double[][] z = {{Cosinus(angle), -Sinus(angle), 0, 0}, {Sinus(angle), Cosinus(angle), 0, 0}, {0, 0, 1, 0}, {0, 0, 0, 1}};
-        double[][] x = {{1, 0, 0, 0}, {0, Cosinus(angle), -Sinus(angle), 0}, {0, Sinus(angle), Cosinus(angle), 0}, {0, 0, 0, 1}};
-        double[][] y = {{Cosinus(angle), 0, Sinus(angle), 0}, {0, 1, 0, 0}, {-Sinus(angle), 0, Cosinus(angle), 0}, {0, 0, 0, 1}};
-        double[] vector = {this.x, this.y, this.z, 0};
+    public cVector rotateAxis(int angleX, int angleY, int angleZ) {
+        double[][] z = {{Cosinus(angleZ), -Sinus(angleZ), 0, 0}, {Sinus(angleZ), Cosinus(angleZ), 0, 0}, {0, 0, 1, 0}, {0, 0, 0, 1}};
+        double[][] x = {{1, 0, 0, 0}, {0, Cosinus(angleX), -Sinus(angleX), 0}, {0, Sinus(angleX), Cosinus(angleX), 0}, {0, 0, 0, 1}};
+        double[][] y = {{Cosinus(angleY), 0, Sinus(angleY), 0}, {0, 1, 0, 0}, {-Sinus(angleY), 0, Cosinus(angleY), 0}, {0, 0, 0, 1}};
+        double[] vector = {this.x, this.y, this.z, 1};
         double[] result = new double[4];
-        double sum = 0;
-        Arrays.fill(result, 0);
-        switch (axis) {
+        
+        double[][] XYRotMatrix = multiplyMatrix(x, y);
+        double[][] XYZRotMatrix = multiplyMatrix(XYRotMatrix, z);
+        result = multiplyMatrix(XYZRotMatrix, vector);
+        
+        //double sum = 0;
+        //cVector ret= new cVector();
+        //Arrays.fill(result, 0);
+        /*switch (axis) {
 
             case 'x': {
 
                 for (int k = 0; k < 4; k++) {
                     for (int j = 0; j < 4; j++) {
-                        result[k] += vector[j] * x[j][k];
+                        result[k] += vector[j] * x[k][j];
                     }
                 }
-
+                
+                break;
             }
             case 'y': {
                 // Arrays.fill(result, 0);
                 for (int k = 0; k < 4; k++) {
                     for (int j = 0; j < 4; j++) {
-                        result[k] += vector[j] * y[j][k];
+                        result[k] += vector[j] * y[k][j];
                     }
                 }
-
+                    break;
             }
 
             case 'z': {
                 for (int k = 0; k < 4; k++) {
                     for (int j = 0; j < 4; j++) {
-                        result[k] += vector[j] * x[j][k];
+                        result[k] += vector[j] * x[k][j];
                     }
                 }
-
+                    break;
             }
-        }
+        }*/
 
+        // multiply(x, y) >> temp
+        // multiply(temp, z) >> rotMatrix
+        // rotAxis(rotMatrix, v)
+        
         return new cVector((float) result[0], (float) result[1], (float) result[2]);
     }
-
+public cVector returnrX(){
+    double Sin = Sinus(45);
+    double Cos = Cosinus(45);
+    
+float x=this.x;
+double y=Cosinus(45)*this.y-Sinus(45)*this.z;
+double z = Sinus(45)*this.y+Cosinus(45)*this.z;
+return new cVector(x,(float)y,(float)z);}
     public double Cosinus(int angle) {
         double num = 0;
         int sign = minusPlus(angle);
@@ -259,20 +277,25 @@ public class cVector {
         switch (s) {
             case 0: {
                 num = 1;
+                break;
             }
             case 30: {
                 num = (Math.sqrt(3) / 2)*sign;
+                break;
 
             }
             case 45: {
                 num = (Math.sqrt(2) / 2)*sign;
+                break;
             }
             case 60: {
                 num = 0.5*sign;
+                break;
 
             }
             case 90: {
                 num = 0;
+                break;
             }
 
         }
@@ -287,19 +310,23 @@ public class cVector {
         switch (s) {
             case 0: {
                 num = 0;
+                break;
             }
             case 30: {
                 num = 0.5*sign;
-
+                break;
             }
             case 45: {
                 num = (Math.sqrt(2) / 2)*sign;
+                break;
             }
             case 60: {
                 num = (Math.sqrt(3) / 2)*sign;
+                break;
             }
             case 90: {
                 num = 1*sign;
+                break;
             }
 
         }
@@ -330,5 +357,32 @@ public class cVector {
             }
         }
         return new cVector((float) result[0], (float) result[1], (float) result[2]);
+    }
+    
+    // return c = a * b
+    public static double[][] multiplyMatrix(double[][] a, double[][] b) {
+        int m1 = a.length;
+        int n1 = a[0].length;
+        int m2 = b.length;
+        int n2 = b[0].length;
+        if (n1 != m2) throw new RuntimeException("Illegal matrix dimensions.");
+        double[][] c = new double[m1][n2];
+        for (int i = 0; i < m1; i++)
+            for (int j = 0; j < n2; j++)
+                for (int k = 0; k < n1; k++)
+                    c[i][j] += a[i][k] * b[k][j];
+        return c;
+    }
+
+    // matrix-vector multiplication (y = A * x)
+    public static double[] multiplyMatrix(double[][] a, double[] x) {
+        int m = a.length;
+        int n = a[0].length;
+        if (x.length != n) throw new RuntimeException("Illegal matrix dimensions.");
+        double[] y = new double[m];
+        for (int i = 0; i < m; i++)
+            for (int j = 0; j < n; j++)
+                y[i] += a[i][j] * x[j];
+        return y;
     }
 }

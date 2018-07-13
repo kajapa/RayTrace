@@ -8,6 +8,7 @@ package Main;
 import Cameras.CameraOrtho;
 import Cameras.CameraPerpectiv;
 import Model3DParser.Face;
+import Model3DParser.Loader;
 import Model3DParser.Model3D;
 import Model3DParser.OBJLoader;
 import Primitives.ObjectLists;
@@ -19,6 +20,8 @@ import java.awt.Color;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -48,7 +51,7 @@ public class RayTracer extends JFrame {
         //OBJ Object
         Model3D m = null;
         try {
-            m = OBJLoader.loadModel(new File("pyramid.obj"));
+            m = OBJLoader.loadModel(new File("cubex45.obj"));
         }
         catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -63,25 +66,36 @@ public class RayTracer extends JFrame {
         float b = 0;
 
         int scale = 32;
-        cVector position = new cVector(100, 0, 0);
+        cVector position = new cVector(200, 200, 0);
         /*objects.addToList(new Triangle(new cVector(300,300,0),new cVector(300,500,0), new cVector(500,300,0), red));
         objects.addToList(new Triangle(new cVector(300,500,0),new cVector(500,500,0), new cVector(500,300,0), blue));
         objects.addToList(new Triangle(new cVector(500,300,10).rotateAxis(30, 'x'),new cVector(500,500,10).rotateAxis(30, 'x'), new cVector(700,300,10).rotateAxis(30, 'x'), red));
         objects.addToList(new Triangle(new cVector(500,500,10).rotateAxis(30, 'x'),new cVector(700,500,10).rotateAxis(30, 'x'), new cVector(700,300,10).rotateAxis(30, 'x'), blue));*/
 
+        int i = 0;
+        Color[] kolory={Color.RED,Color.BLUE,Color.GREEN,Color.PINK,Color.YELLOW,Color.WHITE};
+               
         for (Face face : m.faces) {
            
 
-                cVector v1 = new cVector(m.verticies.get(face.v1 - 1)).multiuplayby(16).add(position).rotateAxis(90, 'x').rotateAxis(60, 'x');
-                //System.out.printf("Przed skalowaniem: "+v1.toString()+" Po skalowaniu: "+ v1.scaleVector(new cVector(1,0.5f,1)).toString());
-                cVector v2 = new cVector(m.verticies.get(face.v2 - 1)).multiuplayby(16).add(position).rotateAxis(90, 'x').rotateAxis(60, 'x');
-                cVector v3 = new cVector(m.verticies.get(face.v3 - 1)).multiuplayby(16).add(position).rotateAxis(90, 'x').rotateAxis(60, 'x');
+                cVector v1 = new cVector(m.verticies.get(face.v1 - 1)).multiuplayby(32).rotateAxis(0, 0, 0).add(position);
+               /* System.out.printf("\n\rFace: " + i++);
+                System.out.printf("\n\rPrzed skalowaniem: "+v1.toString()+" Po skalowaniu: "+ v1.multiuplayby(32).toString());
+                System.out.printf("\n\rPrzed rotacja: "+v1.toString()+" Po rotacji: "+ v1.rotateAxis(45, 'x').toString());
+                System.out.printf("\n\rPrzed przesunieciem: "+v1.toString()+" Po przesunieciu: "+ v1.add(position).toString());*/
+                
+                cVector v2 = new cVector(m.verticies.get(face.v2 - 1)).multiuplayby(32).rotateAxis(0, 0, 0).add(position);
+                cVector v3 = new cVector(m.verticies.get(face.v3 - 1)).multiuplayby(32).rotateAxis(0, 0, 0).add(position);
 
               
                 cVector n = new cVector(m.normals.get(face.n - 1));
-
+                
                 //System.out.println(v1.toString() + v2.toString() + v3.toString() + v4.toString() + "normal: " + n.toString());
-                objects.addToList(new Triangle(v1, v2, v3, randomColor()));
+                objects.addToList(new Triangle(v1, v2, v3, kolory[(int)i++/2]));
+                Loader load = new Loader();
+               
+                objects.Transfer( load.Loadtriangle("cubex45.obj", new cVector(200,200,0), 32, 0, 0, 0).listobjects);
+                
                
            
            

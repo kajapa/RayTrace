@@ -5,6 +5,7 @@
  */
 package Primitives;
 
+import Model3DParser.Face;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,5 +17,12 @@ public class ObjectLists {
     public List<Object> listobjects = new ArrayList<Object>();
     public void addToList(Object obj){
     listobjects.add(obj);
+    }
+    public void Transfer(List<Object> list){
+    
+        for (Object object : list){
+    listobjects.add(object);
+    }
+   
     }
 }
