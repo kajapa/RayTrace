@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Random;
 
 
 public class Loader{
@@ -54,14 +55,20 @@ public class Loader{
                 cVector v3 = new cVector(m.verticies.get(face.v3 - 1)).multiuplayby(scale).rotateAxis(sx, sy, sz).add(position);
 
               
-                cVector n = new cVector(m.normals.get(face.n - 1));
+                cVector n = new cVector(m.normals.get(face.n - 1)).add(position);
                 
                 //System.out.println(v1.toString() + v2.toString() + v3.toString() + v4.toString() + "normal: " + n.toString());
-                objects.addToList(new Triangle(v1, v2, v3, kolory[(int)i++/2]));
+                objects.addToList(new Triangle(v1, v2, v3,n,kolory[(int)i++/2] ));//kolory[(int)i++/2])
     
     
     
     
         }
         return objects;
-}}
+}
+
+    public static Color randomColor() {
+        Random r = new Random();
+        return new Color((int) (r.nextFloat() * 255), (int) (r.nextFloat() * 255), (int) (r.nextFloat() * 255));
+    }
+}
