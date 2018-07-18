@@ -49,19 +49,7 @@ public class RayTracer extends JFrame {
         //objects.addToList(new Quad(new cVector(200, 400, 0), new cVector(200, 200, 0), new cVector(600, 200, 0), new cVector(600, 400, 0), red));
 
         //OBJ Object
-        Model3D m = null;
-        try {
-            m = OBJLoader.loadModel(new File("cubex45.obj"));
-        }
-        catch (FileNotFoundException e) {
-            e.printStackTrace();
 
-            System.exit(1);
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-            System.exit(1);
-        }
 
 
         /*objects.addToList(new Triangle(new cVector(300,300,0),new cVector(300,500,0), new cVector(500,300,0), red));
@@ -73,7 +61,7 @@ public class RayTracer extends JFrame {
                
                // objects.Transfer( load.Loadtriangle("cubex45.obj", new cVector(200,200,0), 32, 0, 0, 0).listobjects);
 
-        objects.Transfer( load.Loadtriangle("pyramid.obj", new cVector(400,200,0), 32, 0, 45, 30).listobjects);
+        objects.Transfer( load.Loadtriangle("cube.obj", new cVector(400,250,0), 20, 0, 30, 30).listobjects);
                 
                
            

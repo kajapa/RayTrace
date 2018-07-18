@@ -14,7 +14,7 @@ public class Loader{
 
     public ObjectLists objects = new ObjectLists();
     
-    public ObjectLists Loadtriangle(String file,cVector position, int scale,int sx,int sy,int sz){
+    public ObjectLists Loadtriangle(String file,cVector position, int scale,int rx,int ry,int rz){
     
     Model3D m = null;
         try {
@@ -45,14 +45,14 @@ public class Loader{
         for (Face face : m.faces) {
            
 
-                cVector v1 = new cVector(m.verticies.get(face.v1 - 1)).multiuplayby(scale).rotateAxis(sx, sy, sz).add(position);
+                cVector v1 = new cVector(m.verticies.get(face.v1 - 1)).multiuplayby(scale).rotateAxis(rx, ry, rz).add(position);
                /* System.out.printf("\n\rFace: " + i++);
                 System.out.printf("\n\rPrzed skalowaniem: "+v1.toString()+" Po skalowaniu: "+ v1.multiuplayby(32).toString());
                 System.out.printf("\n\rPrzed rotacja: "+v1.toString()+" Po rotacji: "+ v1.rotateAxis(45, 'x').toString());
                 System.out.printf("\n\rPrzed przesunieciem: "+v1.toString()+" Po przesunieciu: "+ v1.add(position).toString());*/
                 
-                cVector v2 = new cVector(m.verticies.get(face.v2 - 1)).multiuplayby(scale).rotateAxis(sx, sy, sz).add(position);
-                cVector v3 = new cVector(m.verticies.get(face.v3 - 1)).multiuplayby(scale).rotateAxis(sx, sy, sz).add(position);
+                cVector v2 = new cVector(m.verticies.get(face.v2 - 1)).multiuplayby(scale).rotateAxis(rx, ry, rz).add(position);
+                cVector v3 = new cVector(m.verticies.get(face.v3 - 1)).multiuplayby(scale).rotateAxis(rx, ry, rz).add(position);
 
               
                 cVector n = new cVector(m.normals.get(face.n - 1)).add(position);
