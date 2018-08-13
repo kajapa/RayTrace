@@ -129,6 +129,7 @@ public class CameraOrtho extends JPanel {
         System.out.println("Finished Render");
     }
 
+
     public Color newColor(int r, int g, int b) {
         return new Color(max(0, min(255, r)), max(0, min(255, g)), max(0, min(255, b)));
     }
