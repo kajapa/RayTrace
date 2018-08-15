@@ -20,7 +20,7 @@ public class Collision {
     public boolean intersect(cRay Ray, Sphere sphere) {
 
         cVector v, dir;
-        v = new cVector().subtract(Ray.getOrigin(), sphere.getCenter());
+        v = new cVector().sub(Ray.getOrigin(), sphere.getCenter());
         dir = Ray.getDirection();
 
         float b = (v.dot(Ray.getDirection()));

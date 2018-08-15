@@ -11,7 +11,7 @@ import java.awt.Color;
  *
  * @author Patryk
  */
-public class Sphere extends Object {
+public class Sphere extends Primitive {
 
     float Ray;
     cVector center;
@@ -19,8 +19,8 @@ public class Sphere extends Object {
     Color kolor;
 
     // KONSTRUKTOR 
-    public Sphere(cVector center, float Ray, Color kolor) {
-        super(kolor);
+    public Sphere(cVector center, float Ray, Color kolor,cVector normal) {
+        super(kolor,normal);
 
         this.kolor = kolor;
         this.center = center;
@@ -56,7 +56,7 @@ public class Sphere extends Object {
     public Collision intersect(cRay Ray) {
         cVector v, dir;
 
-        v = new cVector().subtract(Ray.getOrigin(), getCenter());
+        v = new cVector().sub(Ray.getOrigin(), getCenter());
         dir = Ray.getDirection();
 
         float b = (v.dot(Ray.getDirection()));

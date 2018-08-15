@@ -11,22 +11,22 @@ import java.awt.Color;
  *
  * @author Patryk
  */
-public class Triangle extends Object {
+public class Triangle extends Primitive {
 
     public static final float kEpsilon = 0.000001f;
 
     public cVector p1;
     public cVector p2;
     public cVector p3;
-    public cVector N;
+
 
 
     public Triangle(cVector p1, cVector p2, cVector p3,cVector N, Color color) {
-        super(color);
+        super(color,N);
         this.p1 = p1;
         this.p2 = p2;
         this.p3 = p3;
-        this.N=N;
+
 
 
     }
@@ -34,7 +34,7 @@ public class Triangle extends Object {
     @Override
     public Collision intersect(cRay ray) {
         float dist;
-        cVector normal;
+
         cVector edge1 = cVector.sub(p2, p1);
         cVector edge2 = cVector.sub(p3, p1);
         cVector pV = cVector.cross(ray.getDirection(), edge2);
@@ -62,7 +62,7 @@ public class Triangle extends Object {
         float t = edge2.dot(qV) * invDet;
 
         cVector result = new cVector(cVector.addVectors((cVector.multiply(ray.getDirection(), t)), ray.getOrigin()));
-        normal = N;//cVector.sub(result, new cVector((p1.x + p2.x + p3.x) / 3, (p1.y + p2.y + p3.y) / 3, (p1.z + p2.z + p3.z / 3))).normalized();
+        //cVector.sub(result, new cVector((p1.x + p2.x + p3.x) / 3, (p1.y + p2.y + p3.y) / 3, (p1.z + p2.z + p3.z / 3))).normalized();
         dist = cVector.distance(result, ray.getOrigin());
         return new Collision(ray.getOrigin(), result, this);
     }}

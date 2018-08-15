@@ -12,9 +12,9 @@ import java.util.logging.Logger;
  *
  * @author Patryk
  */
-public class Plane extends Object {
+public class Plane extends Primitive {
 
-    private cVector point, normal;
+    private cVector point;
     public float sx, sy;
     private static final Logger logger = Logger.getLogger("Log");
     int r, g, b;
@@ -22,7 +22,7 @@ public class Plane extends Object {
 
     public Plane(cVector point, cVector normal, float sx, float sy, Color kolor) {
 
-        super(kolor);
+        super(kolor,normal);
         this.point = point;
         this.normal = normal;
         this.sx = sx;

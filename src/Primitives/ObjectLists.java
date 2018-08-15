@@ -5,7 +5,8 @@
  */
 package Primitives;
 
-import Model3DParser.Face;
+import Objects.Object;
+
 import java.util.ArrayList;
 import java.util.List;
 

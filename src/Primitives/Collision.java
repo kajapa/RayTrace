@@ -18,12 +18,12 @@ public class Collision {
     public cVector origin;
     public cVector collisionPoint;
     public float length;
-    public Object object;
+    public Primitive primitive;
 
-    public Collision(cVector origin, cVector collisionPoint, Object object) {
+    public Collision(cVector origin, cVector collisionPoint, Primitive primitive) {
         this.origin = origin;
         this.collisionPoint = collisionPoint;
-        this.object = object;
+        this.primitive = primitive;
         this.length = Math.abs(new cVector(origin, collisionPoint).length());
     }
 

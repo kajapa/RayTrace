@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Primitives;
+package Objects;
+
+import Primitives.*;
+
 
 import java.awt.Color;
 
@@ -11,27 +14,16 @@ import java.awt.Color;
  *
  * @author Patryk
  */
-public abstract class Object {
+public abstract class Object
+{
+    cVector position;
 
-    private Color color;
-    
-
-    public Object(Color color) {
-        this.color = color;
-        
-
-    }
 
     public abstract Collision intersect(cRay Ray);
 
-    public Color getColor() {
-        return color;
-    }
 
-    public void setColor(Color color) {
-        this.color = color;
 
-    }
+
 
     
 

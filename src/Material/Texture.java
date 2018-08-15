@@ -13,11 +13,11 @@ public class Texture {
         if (phi < 0.0)
             phi += 2*Math.PI;
 // następnie, konwertujemy theta i phi do (u, v) w [0, 1] X [0, 1]
-        float u = phi * invTWO_PI;
-        float v = 1.0 - theta * invPI;
+     //   float u = phi * invTWO_PI;
+       // float v = 1.0 - theta * invPI;
 // na końcu, przekształcamy u oraz v współrzędnych texela
-        column = (int) ((xres - 1) * u); // kolumna jest poziomo
-        row = (int) ((yres - 1) * v);
+      //  column = (int) ((xres - 1) * u); // kolumna jest poziomo
+        //row = (int) ((yres - 1) * v);
 
     };
 }

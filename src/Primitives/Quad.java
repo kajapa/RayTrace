@@ -13,7 +13,7 @@ import java.util.logging.Logger;
  *
  * @author Patryk
  */
-public class Quad extends Object {
+public class Quad extends Primitive {
 
     private cVector point, N, v0, v1, v2, v3;
     public float sx, sy;
@@ -32,9 +32,9 @@ public class Quad extends Object {
 //        this.kolor = kolor;
 //        
 //    }
-    public Quad(cVector v0, cVector v1, cVector v2, cVector v3, cVector N, Color kolor) {
+    public Quad(cVector v0, cVector v1, cVector v2, cVector v3, cVector N, Color kolor,cVector normal) {
 
-        super(kolor);
+        super(kolor,normal);
         this.v0 = v0;
         this.v1 = v1;
         this.v2 = v2;
@@ -68,10 +68,10 @@ public class Quad extends Object {
     public Collision intersect(cRay Ray) {
 
         //----- Plane's N
-        cVector v0v1 = new cVector().subtract(v1, v0);
-        cVector v1v3 = new cVector().subtract(v3, v1);
+        cVector v0v1 = new cVector().sub(v1, v0);
+        cVector v1v3 = new cVector().sub(v3, v1);
 
-        cVector v0v2 = new cVector().subtract(v2, v0);
+        cVector v0v2 = new cVector().sub(v2, v0);
 
         //cVector N = new cVector().getVectorProduct(v0v2,v1v3 );//<-----Normal
         float NdotRayDirection = N.dot(Ray.getDirection());//<---- if 
@@ -88,16 +88,16 @@ public class Quad extends Object {
         cVector C;
         cVector P = Ray.getOrigin().add(Ray.getDirection().multiuplayby(t));
         //Edge0
-        cVector edge0 = new cVector().subtract(v1, v0);
-        cVector vp0 = new cVector().subtract(P, v0);
+        cVector edge0 = new cVector().sub(v1, v0);
+        cVector vp0 = new cVector().sub(P, v0);
         C = new cVector().getVectorProduct(edge0, vp0);
         if (N.dot(C) < 0) {//<--- if P is on right side
             // System.out.println("False2");
             return null;
         }
         //Edge1
-        cVector edge1 = new cVector().subtract(v2, v1);
-        cVector vp1 = new cVector().subtract(P, v1);
+        cVector edge1 = new cVector().sub(v2, v1);
+        cVector vp1 = new cVector().sub(P, v1);
         C = new cVector().getVectorProduct(edge1, vp1);
         if (N.dot(C) < 0) {//<--- if P is on right side
             //System.out.println("False3");
@@ -105,8 +105,8 @@ public class Quad extends Object {
         }
 
         //Edge2
-        cVector edge2 = new cVector().subtract(v3, v2);
-        cVector vp2 = new cVector().subtract(P, v2);
+        cVector edge2 = new cVector().sub(v3, v2);
+        cVector vp2 = new cVector().sub(P, v2);
         C = new cVector().getVectorProduct(edge2, vp2);
         if (N.dot(C) < 0) {//<--- if P is on right side
             //System.out.println("False4");
@@ -114,8 +114,8 @@ public class Quad extends Object {
         }
 
         //Edge3
-        cVector edge3 = new cVector().subtract(v0, v3);
-        cVector vp3 = new cVector().subtract(P, v3);
+        cVector edge3 = new cVector().sub(v0, v3);
+        cVector vp3 = new cVector().sub(P, v3);
         C = new cVector().getVectorProduct(edge3, vp3);
         if (N.dot(C) < 0) {//<--- if P is on right side
             //System.out.println("False5");

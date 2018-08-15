@@ -26,7 +26,7 @@ public class cRay extends cVector {
     public cRay(cVector origin, cVector destination) {
         this.origin = origin;
         this.destination = destination;
-        this.direction = new cVector().subtract(this.origin, this.destination).normalized();
+        this.direction = new cVector().sub(this.origin, this.destination).normalized();
     }
 
     // GET
@@ -73,7 +73,7 @@ public class cRay extends cVector {
     //-------------------------------------------------------------------------------//
     // KIERUNEK PROMIENIA (WEKTOR)
     public cVector countDirection() {
-        return new cVector().subtract(origin, destination);
+        return new cVector().sub(origin, destination);
     }
 
     // DLUGOSC PROMIENIA

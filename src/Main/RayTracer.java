@@ -7,6 +7,7 @@ package Main;
 
 import Cameras.CameraOrtho;
 import Cameras.CameraPerpectiv;
+import Light.PointLight;
 import Model3DParser.Face;
 import Model3DParser.Loader;
 import Model3DParser.Model3D;
@@ -44,7 +45,10 @@ public class RayTracer extends JFrame {
 
     public RayTracer() throws IOException {
         super.setSize(width, height);
-        CameraOrtho paint = new CameraOrtho(false, new cVector(0, 0, 5), width, height, objects);
+
+        PointLight light=new PointLight(new cVector(400,300,1),new cVector(0,1f,0),0.f,0.f,0.f);
+
+        CameraOrtho paint = new CameraOrtho(false,new cVector(0,0,0),light, width, height, objects);
         // objects.addToList(new Triangle(new cVector(100,100,-50),new cVector(100,300,0),new cVector(300,100,0),red));
         //objects.addToList(new Quad(new cVector(200, 400, 0), new cVector(200, 200, 0), new cVector(600, 200, 0), new cVector(600, 400, 0), red));
 

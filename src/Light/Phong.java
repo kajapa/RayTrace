@@ -7,7 +7,7 @@ import Primitives.cVector;
 import java.awt.*;
 
 public class Phong {
-    boolean aliasing;
+   /* boolean aliasing;
 
     cVector position;
     int width;
@@ -31,7 +31,7 @@ public class Phong {
 
     {
         for (int j = 0; j < height; j++) {
-            srodekX = -1.8f + (i + 0.5f) * widthPixel;
+            //srodekX = -1.8f + (i + 0.5f) * widthPixel;
             srodekY = 1.0f - (j + 0.5f) * heightPixel;
             cRay ray = new cRay(new cVector(0, 0, 1), new cVector(srodekX,srodekY, 0));
             Point intersetion = s.intersect(ray);
@@ -61,5 +61,5 @@ public class Phong {
             } else img.setPixel(i, j, aIntensity);
         }
     }
-}
+}*/
 }

@@ -87,9 +87,9 @@ public class cVector {
     }
 
     // ODEJMOWANIE WEKTOROW
-    public cVector subtract(cVector vectorA, cVector vectorB) {
+    public cVector subtract( cVector vectorB) {
 
-        return new cVector(vectorA.getX() - vectorB.getX(), vectorA.getY() - vectorB.getY(), vectorA.getZ() - vectorB.getZ());
+        return new cVector(this.getX() - vectorB.getX(), this.getY() - vectorB.getY(), this.getZ() - vectorB.getZ());
     }
 
     // MNOZENIE WEKTOROW
