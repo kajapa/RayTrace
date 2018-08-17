@@ -5,6 +5,8 @@
  */
 package Primitives;
 
+import Material.Material;
+
 import java.awt.Color;
 
 /**
@@ -16,10 +18,10 @@ public class Sphere extends Primitive {
     float Ray;
     cVector center;
 
-    Color kolor;
+    Material kolor;
 
     // KONSTRUKTOR 
-    public Sphere(cVector center, float Ray, Color kolor,cVector normal) {
+    public Sphere(cVector center, float Ray, Material kolor,cVector normal) {
         super(kolor,normal);
 
         this.kolor = kolor;

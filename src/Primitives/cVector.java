@@ -116,9 +116,9 @@ public class cVector {
 
     // ILOCZYN SKALARNY
     // ILOCZYN WEKTOROWY
-    public cVector getVectorProduct(cVector vectorA, cVector vectorB) {
+    public cVector getVectorProduct(cVector vectorB) {
 
-        return new cVector(vectorA.getY() * vectorB.getZ() - vectorA.getZ() * vectorB.getY(), vectorA.getZ() * vectorB.getX() - vectorA.getX() * vectorB.getZ(), vectorA.getX() * vectorB.getY() - vectorA.getY() * vectorB.getX());
+        return new cVector(y * vectorB.getZ() - z * vectorB.getY(), z * vectorB.getX() - x * vectorB.getZ(), x * vectorB.getY() - y * vectorB.getX());
     }
 
     public void div(float f) {

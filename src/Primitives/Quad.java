@@ -5,6 +5,8 @@
  */
 package Primitives;
 
+import Material.Material;
+
 import static Primitives.Triangle.kEpsilon;
 import java.awt.Color;
 import java.util.logging.Logger;
@@ -19,7 +21,7 @@ public class Quad extends Primitive {
     public float sx, sy;
     private static final Logger logger = Logger.getLogger("Log");
     int r, g, b;
-    Color kolor = new Color(r, g, b);
+    Material kolor ;
 
 //    public Quad(cVector point, cVector N, float sx, float sy, Color kolor) {
 //
@@ -32,7 +34,7 @@ public class Quad extends Primitive {
 //        this.kolor = kolor;
 //        
 //    }
-    public Quad(cVector v0, cVector v1, cVector v2, cVector v3, cVector N, Color kolor,cVector normal) {
+    public Quad(cVector v0, cVector v1, cVector v2, cVector v3, cVector N, Material kolor,cVector normal) {
 
         super(kolor,normal);
         this.v0 = v0;
@@ -90,7 +92,7 @@ public class Quad extends Primitive {
         //Edge0
         cVector edge0 = new cVector().sub(v1, v0);
         cVector vp0 = new cVector().sub(P, v0);
-        C = new cVector().getVectorProduct(edge0, vp0);
+        C = edge0.getVectorProduct( vp0);
         if (N.dot(C) < 0) {//<--- if P is on right side
             // System.out.println("False2");
             return null;
@@ -98,8 +100,8 @@ public class Quad extends Primitive {
         //Edge1
         cVector edge1 = new cVector().sub(v2, v1);
         cVector vp1 = new cVector().sub(P, v1);
-        C = new cVector().getVectorProduct(edge1, vp1);
-        if (N.dot(C) < 0) {//<--- if P is on right side
+        C = edge1.getVectorProduct(vp1);
+        if (N.dot(C) < 0) {//<--- i P is on right side
             //System.out.println("False3");
             return null;
         }
@@ -107,7 +109,7 @@ public class Quad extends Primitive {
         //Edge2
         cVector edge2 = new cVector().sub(v3, v2);
         cVector vp2 = new cVector().sub(P, v2);
-        C = new cVector().getVectorProduct(edge2, vp2);
+        C = edge2.getVectorProduct( vp2);
         if (N.dot(C) < 0) {//<--- if P is on right side
             //System.out.println("False4");
             return null;
@@ -116,7 +118,7 @@ public class Quad extends Primitive {
         //Edge3
         cVector edge3 = new cVector().sub(v0, v3);
         cVector vp3 = new cVector().sub(P, v3);
-        C = new cVector().getVectorProduct(edge3, vp3);
+        C = edge3.getVectorProduct(vp3);
         if (N.dot(C) < 0) {//<--- if P is on right side
             //System.out.println("False5");
             return null;

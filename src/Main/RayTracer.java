@@ -65,7 +65,7 @@ public class RayTracer extends JFrame {
                
                // objects.Transfer( load.Loadtriangle("cubex45.obj", new cVector(200,200,0), 32, 0, 0, 0).listobjects);
 
-        objects.Transfer( load.Loadtriangle("cube.obj", new cVector(400,250,0), 20, 0, 30, 30).listobjects);
+        objects.Transfer( load.Loadtriangle("pyramid.obj", new cVector(400,250,0), 20, 0, 30, 30).listobjects);
                 
                
            

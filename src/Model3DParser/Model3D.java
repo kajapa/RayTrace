@@ -5,9 +5,11 @@
  */
 package Model3DParser;
 
+import Material.Material;
 import Primitives.cVector;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -18,6 +20,7 @@ public class Model3D  {
     public List<cVector> verticies = new ArrayList<cVector>();
     public List<cVector> normals = new ArrayList<cVector>();
     public List<Face> faces = new ArrayList<Face>();
+    public HashMap<String,Material> materialmap= new HashMap<String,Material>();
 
    public Model3D() {
         

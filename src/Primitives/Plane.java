@@ -5,6 +5,8 @@
  */
 package Primitives;
 
+import Material.Material;
+
 import java.awt.Color;
 import java.util.logging.Logger;
 
@@ -18,9 +20,9 @@ public class Plane extends Primitive {
     public float sx, sy;
     private static final Logger logger = Logger.getLogger("Log");
     int r, g, b;
-    Color kolor = new Color(r, g, b);
+    Material kolor ;
 
-    public Plane(cVector point, cVector normal, float sx, float sy, Color kolor) {
+    public Plane(cVector point, cVector normal, float sx, float sy, Material kolor) {
 
         super(kolor,normal);
         this.point = point;

@@ -5,6 +5,8 @@
  */
 package Primitives;
 
+import Material.Material;
+
 import java.awt.Color;
 
 /**
@@ -21,8 +23,8 @@ public class Triangle extends Primitive {
 
 
 
-    public Triangle(cVector p1, cVector p2, cVector p3,cVector N, Color color) {
-        super(color,N);
+    public Triangle(cVector p1, cVector p2, cVector p3,cVector N, Material material) {
+        super(material,N);
         this.p1 = p1;
         this.p2 = p2;
         this.p3 = p3;

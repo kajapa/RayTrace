@@ -1,15 +1,17 @@
 package Primitives;
 
+import Material.Material;
+
 import java.awt.*;
 
 public abstract class Primitive {
-    private Color color;
+    private Material material;
     public cVector normal;
 
 
 
-    public Primitive(Color color,cVector normal) {
-        this.color = color;
+    public Primitive(Material material, cVector normal) {
+        this.material = material;
         this.normal=normal;
 
 
@@ -18,12 +20,12 @@ public abstract class Primitive {
 
     public abstract Collision intersect(cRay Ray);
 
-    public Color getColor() {
-        return color;
+    public Material getColor() {
+        return material;
     }
 
-    public void setColor(Color color) {
-        this.color = color;
+    public void setColor(Material material) {
+        this.material = material;
 
     }
 

@@ -5,6 +5,7 @@
  */
 package Cameras;
 
+import Light.Phong;
 import Light.PointLight;
 import fotorealna.Aliasing;
 import Objects.Object;
@@ -34,6 +35,7 @@ public class CameraOrtho extends JPanel {
 
     int height;
 
+
     public CameraOrtho(boolean aliasing, cVector position, PointLight light, int width, int height, ObjectLists objects) {
         super.setDoubleBuffered(true);
         this.position = position;
@@ -47,6 +49,7 @@ public class CameraOrtho extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
+        Phong phong = new Phong(light,background,objects,aliasing);
 
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
@@ -57,7 +60,13 @@ public class CameraOrtho extends JPanel {
 
                 }
                 else {
-                   SetPhong(g2d,i,j);
+                    float middleX = (float) (position.x + (i + 0.5));
+                    float middleY = (float) (position.y + (j + 0.5));
+                    cRay ray = new cRay(new cVector(middleX, middleY, position.z), new cVector(middleX, middleY, 1));
+
+                    phong.SetPhong(middleX,middleY,g2d,ray,i,j);
+
+                   //SetPhong(g2d,i,j);
 
                 }
 
@@ -90,7 +99,7 @@ public class CameraOrtho extends JPanel {
                 }
             }
             if (collisionList != null && collisionList.size() > 0) {
-                colorList.add(Primitives.Collision.nearest(collisionList).primitive.getColor());
+                //colorList.add(Primitives.Collision.nearest(collisionList).primitive.getColor());
             }
 
             if (!inter) {

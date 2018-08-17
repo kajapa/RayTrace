@@ -76,7 +76,7 @@ public class CameraPerpectiv extends JPanel {
                             }
                         }
                         if (collisionList != null && collisionList.size() > 0) {
-                            colorList.add(Collision.nearest(collisionList).primitive.getColor());
+                            //colorList.add(Collision.nearest(collisionList).primitive.getColor());
                         }
 
                         if (!inter) {
@@ -111,7 +111,7 @@ public class CameraPerpectiv extends JPanel {
                     ///cRay ray = new cRay(position, dir.normalize());
                     cRay ray = new cRay(position, new cVector(i - middleX, j - middleY, 0));
 
-                    for (Object obj : objects.listobjects) {
+
                         
                         List<Collision> collisionList = new ArrayList<>();
                         for (Object object : objects.listobjects) {
@@ -123,12 +123,12 @@ public class CameraPerpectiv extends JPanel {
                         }
 
                         if (collisionList != null && collisionList.size() > 0) {
-                            g2d.setColor(Collision.nearest(collisionList).primitive.getColor());
+                            //g2d.setColor(Collision.nearest(collisionList).primitive.getColor());
                             g2d.fillRect(i, j, 1, 1);
                             break;
                         }
 
-                    }
+
                 }
 
             }

@@ -1,5 +1,6 @@
 package Model3DParser;
 
+import Material.Material;
 import Objects.Mesh;
 import Primitives.ObjectLists;
 import Primitives.Triangle;
@@ -17,7 +18,7 @@ public class Loader{
     
     public ObjectLists Loadtriangle(String file,cVector position, int scale,int rx,int ry,int rz)
     {
-    
+        Material mat=new Material();
     Model3D m = null;
         try {
             m = OBJLoader.loadModel(new File(file));
@@ -31,8 +32,7 @@ public class Loader{
             e.printStackTrace();
             System.exit(1);
         }
-        float a = 0;
-        float b = 0;
+
 
         
         
@@ -55,10 +55,12 @@ public class Loader{
                 
                 cVector v2 = new cVector(m.verticies.get(face.v2 - 1)).multiuplayby(scale).rotateAxis(rx, ry, rz).add(position);
                 cVector v3 = new cVector(m.verticies.get(face.v3 - 1)).multiuplayby(scale).rotateAxis(rx, ry, rz).add(position);
-
+                String material= face.materialname;
+                mat=m.materialmap.get(material);
+            System.out.println("Ambient z face"+mat.getkAmbient().toString());
               
                 cVector n = new cVector(m.normals.get(face.n - 1)).add(position);
-                mesh.triangles.add(new Triangle(v1, v2, v3,n,kolory[(int)i++/2] ));
+                mesh.triangles.add(new Triangle(v1, v2, v3,n,mat));
                 //System.out.println(v1.toString() + v2.toString() + v3.toString() + v4.toString() + "normal: " + n.toString());
 
     
