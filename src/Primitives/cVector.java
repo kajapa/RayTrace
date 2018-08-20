@@ -5,6 +5,7 @@
  */
 package Primitives;
 
+import java.awt.*;
 import java.util.Arrays;
 
 /**
@@ -145,6 +146,9 @@ public class cVector {
             return newV;
         }
 
+    }
+    public Color vectorToColor(){
+        return new Color(this.x,this.y,this.z);
     }
     // DLUGOSC DO KWADRATU
 

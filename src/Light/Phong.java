@@ -102,10 +102,10 @@ public class Phong {
 
 
 
-                Color PixelColor = new Color(PixelVector.x,PixelVector.y,PixelVector.z);
+               // Color PixelColor = new Color(PixelVector.x,PixelVector.y,PixelVector.z);
                 //Color PixelColor = new Color(1.f,1.f,1.f);
                 //collisionList.add(intersect);
-                g2d.setColor(PixelColor);
+                g2d.setColor(PixelVector.vectorToColor());
                 g2d.fillRect(i, j, 1, 1);
             }
             else

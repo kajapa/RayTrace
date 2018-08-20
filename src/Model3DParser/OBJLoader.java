@@ -31,7 +31,7 @@ public class OBJLoader {
 
             if (line.startsWith("mtllib ")) {
 
-                MTLLoader.loadMaterial(new File(line.split(" ")[1]),m.materialmap);
+              m.materialmap= MTLLoader.loadMaterial(new File(line.split(" ")[1]));
 
             }
            else if (line.startsWith("v ")) {

@@ -10,9 +10,9 @@ public class MTLLoader {
     public MTLLoader(){}
 
 
-    public static void loadMaterial(File f,HashMap<String,Material> materialmap) throws FileNotFoundException, IOException {
+    public static HashMap<String,Material> loadMaterial(File f) throws FileNotFoundException, IOException {
         BufferedReader reader = new BufferedReader(new FileReader(f));
-        materialmap = new HashMap<String,Material>();
+        HashMap<String,Material> materialmap = new HashMap<String,Material>();
         Material p=new Material();
         String materialname=null;
 
@@ -81,6 +81,6 @@ public class MTLLoader {
 
 
         reader.close();
-
+        return materialmap;
     }
 }
