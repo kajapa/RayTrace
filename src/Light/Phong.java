@@ -62,15 +62,16 @@ public class Phong {
                 float alpha=intersect.primitive.getColor().getAlpha();
 
 
-                cVector L = light.getPosition().subtract(intersect.collisionPoint).normalize();
-                cVector N = intersect.primitive.normal.normalize();
-                cVector V = ray.getDirection().normalize();
+                cVector L = light.getPosition().subtract(intersect.collisionPoint).normalized();
+                cVector N = intersect.primitive.normal.normalized();
+                cVector V = ray.getDirection().multiuplayby(-1f).normalized();
 
 
 
                 // dot z N i L
                 float NL = N.dot(L);
-                cVector R = N.multiuplayby(NL * 2.f).subtract(L);
+                cVector R = (N.multiuplayby(2*NL)).subtract(new cVector(-1f,-1f,-1f)).normalized();
+
 
                 //cVector I=
                 //cVector N= intersect.primitive.normal;
@@ -86,7 +87,7 @@ public class Phong {
                 //    specular=Math.pow((double)ss,(double)a);
                 //}
                 //specular*=specularcouef;
-                cVector sIntesity=  light.getIntesity().getVectorProduct(specular).normalize();
+                cVector sIntesity=  light.getIntesity().getVectorProduct(specular).normalized();
                 //cosinus= L.dot(N);
                 if(NL < 0) NL = 0;
 
@@ -98,13 +99,15 @@ public class Phong {
                         //new cVector(r,g,b).add(aIntestity);
                 cVector PixelVector = sIntesity.add(diffuseIntenisty);
 
-                PixelVector = PixelVector.normalize();
-
+                PixelVector = PixelVector.normalized();
+                System.out.printf("\n"+ PixelVector.toString());
 
 
                // Color PixelColor = new Color(PixelVector.x,PixelVector.y,PixelVector.z);
                 //Color PixelColor = new Color(1.f,1.f,1.f);
                 //collisionList.add(intersect);
+
+
                 g2d.setColor(PixelVector.vectorToColor());
                 g2d.fillRect(i, j, 1, 1);
             }

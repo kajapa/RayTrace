@@ -71,7 +71,7 @@ public class cVector {
 
     @Override
     public String toString() {
-        return "[" + x + ", " + y + ", " + z + "]";
+        return "\n"+"[" + x + ", " + y + ", " + z + "]";
     }
 
     public cVector add(cVector vector) {
@@ -148,6 +148,7 @@ public class cVector {
 
     }
     public Color vectorToColor(){
+
         return new Color(this.x,this.y,this.z);
     }
     // DLUGOSC DO KWADRATU
